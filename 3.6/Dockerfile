@@ -1,11 +1,10 @@
-FROM library/ubuntu:xenial AS build
+FROM library/ubuntu:bionic AS build
 
 ENV LANG=C.UTF-8
 
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get update \
  && apt-get install -y \
-        python-software-properties \
         software-properties-common \
         apt-utils
 
@@ -18,18 +17,19 @@ RUN apt-get download \
         libffi6 \
         libsqlite3-0 \
         python3 \
-        python3.5 \
+        python3.6 \
         python3-minimal \
-        python3.5-minimal \
-        libpython3.5-minimal \
+        python3.6-minimal \
+        libpython3.6-minimal \
         libpython3-stdlib \
-        libpython3.5-stdlib
+        libpython3.6-stdlib
 RUN find *.deb | xargs -I % dpkg-deb -x % /rootfs
 
 WORKDIR /rootfs
 RUN rm -rf \
         etc \
         usr/lib/valgrind \
+        usr/lib/python3/dist-packages/* \
         usr/share/doc \
         usr/share/man \
         usr/share/applications \
@@ -39,8 +39,8 @@ RUN rm -rf \
         usr/share/lintian \
         usr/share/perl5 \
         usr/share/pixmaps \
-        usr/bin/python3.5m \
- && ln -s python3.5 usr/bin/python3.5m
+        usr/bin/python3.6m \
+ && ln -s python3.6 usr/bin/python3.6m
 
 WORKDIR /
 

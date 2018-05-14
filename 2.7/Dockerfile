@@ -1,11 +1,10 @@
-FROM library/ubuntu:xenial AS build
+FROM library/ubuntu:bionic AS build
 
 ENV LANG=C.UTF-8
 
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get update \
  && apt-get install -y \
-        python-software-properties \
         software-properties-common \
         apt-utils
 
@@ -26,6 +25,8 @@ RUN find *.deb | xargs -I % dpkg-deb -x % /rootfs
 
 WORKDIR /rootfs
 RUN rm -rf \
+        etc \
+        usr/bin/dh_* \
         usr/lib/valgrind \
         usr/share/doc \
         usr/share/man \
@@ -36,7 +37,8 @@ RUN rm -rf \
         usr/share/doc-base \
         usr/share/lintian \
         usr/share/perl5 \
-        usr/share/pixmaps
+        usr/share/pixmaps \
+        usr/share/python/dh_*
 
 WORKDIR /
 
