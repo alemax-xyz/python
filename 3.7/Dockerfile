@@ -39,7 +39,8 @@ RUN rm -rf \
         usr/bin/python3.7m \
  && ln -s python3.7 usr/bin/python3 \
  && ln -s python3.7 usr/bin/python3m \
- && ln -s python3.7 usr/bin/python3.7m
+ && ln -s python3.7 usr/bin/python3.7m \
+ && ln -s python3.7 usr/bin/python
 
 WORKDIR /
 

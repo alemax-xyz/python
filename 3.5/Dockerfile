@@ -40,7 +40,8 @@ RUN rm -rf \
         usr/share/perl5 \
         usr/share/pixmaps \
         usr/bin/python3.5m \
- && ln -s python3.5 usr/bin/python3.5m
+ && ln -s python3.5 usr/bin/python3.5m \
+ && ln -s python3.5 usr/bin/python
 
 WORKDIR /
 
