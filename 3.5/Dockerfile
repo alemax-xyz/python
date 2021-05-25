@@ -5,6 +5,7 @@ ENV LANG=C.UTF-8
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get update \
  && apt-get install -y \
+        --no-install-recommends \
         python-software-properties \
         software-properties-common \
         apt-utils
